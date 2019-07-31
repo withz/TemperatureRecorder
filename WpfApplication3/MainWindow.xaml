@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Temperature"
         mc:Ignorable="d"
-        Title="温度检测上位机" Height="500" Width="800" SizeChanged="Window_SizeChanged" Closed="Window_Closed" Icon="bhlogo.png">
+        Title="温度检测上位机" Height="500" Width="800" SizeChanged="Window_SizeChanged" Closed="Window_Closed">
     <Grid>
         <Grid Margin="0">
             <Grid.RowDefinitions>
