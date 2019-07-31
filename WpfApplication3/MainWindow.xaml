@@ -1,0 +1,99 @@
+﻿<Window x:Class="Temperature.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Temperature"
+        mc:Ignorable="d"
+        Title="温度检测上位机" Height="500" Width="800" SizeChanged="Window_SizeChanged" Closed="Window_Closed" Icon="bhlogo.png">
+    <Grid>
+        <Grid Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24"/>
+                <RowDefinition/>
+                <RowDefinition Height="32"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <Menu x:Name="menu" Margin="0" Grid.ColumnSpan="2">
+                <MenuItem Header="程序">
+                    <MenuItem Header="最小化" HorizontalAlignment="Left" Width="144" Checked="MenuItem_Checked"/>
+                </MenuItem>
+            </Menu>
+            <StatusBar Margin="0" Grid.Row="2" Grid.ColumnSpan="2">
+                <Label Content="本机IP"/>
+                <Label x:Name="localIP" Content="0.0.0.0"/>
+                <Label Content="客户端数量"/>
+                <Label x:Name="countClient" Content="0"/>
+                <Label Content="收到数据个数"/>
+                <Label x:Name="countDataPacket" Content="0"/>
+                <Label Content="鼠标位置"/>
+                <Label x:Name="mousePosLabel" Content="0,0"/>
+                <TextBlock TextWrapping="Wrap" Text="状态"/>
+                <TextBlock x:Name="stateLabel" TextWrapping="Wrap" Text=""/>
+
+            </StatusBar>
+            <Grid Grid.Column="1" Margin="0" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="0,5,0,0">
+                    <TextBlock Height="23" Text="端口号" TextAlignment="Center"/>
+                    <TextBlock Height="23"/>
+                    <TextBlock Height="23" Text="放大倍数" TextAlignment="Center"/>
+                    <TextBlock Height="23" Text="显示上限" TextAlignment="Center"/>
+                    <TextBlock Height="23" Text="显示下限" TextAlignment="Center"/>
+                    <TextBlock Height="23"/>
+                    <TextBlock Height="23"/>
+                    <TextBlock Height="23"/>
+                    <TextBlock Height="23" Text="保存起始" TextAlignment="Center"/>
+                    <TextBlock Height="23" Text="保存终止" TextAlignment="Center"/>
+                    <TextBlock Height="23"/>
+                    <TextBlock Height="23"/>
+                    <TextBlock Height="23"/>
+                    <TextBlock Height="23" Text="热端温度" TextAlignment="Center"/>
+                    <TextBlock Height="23" Text="冷端温度" TextAlignment="Center"/>
+                    <TextBlock Height="23" Text="电池电压" TextAlignment="Center"/>
+                    
+                </StackPanel>
+                <StackPanel Grid.Column="1" Margin="0,5,5,0">
+                    <TextBox x:Name="portText" Height="23" TextWrapping="Wrap" Text="59846"/>
+                    <Button x:Name="openServer" Height="23" Content="打开端口" Click="openServer_Click"/>
+                    <TextBox x:Name="dataScale" Height="23" TextWrapping="Wrap" Text="10"/>
+                    <TextBox x:Name="maxTemp" Height="23" TextWrapping="Wrap" Text="500"/>
+                    <TextBox x:Name="minTemp" Height="23" TextWrapping="Wrap" Text="0"/>
+                    <Button x:Name="setRange" Height="23" Content="修改设定" Click="setRange_Click"/>
+                    <Button x:Name="saveTxt" Height="23" Content="全部保存TXT" Click="saveTxt_Click"/>
+                    <Button x:Name="saveExcel" Height="23" Content="全部保存EXCEL" Click="saveExcel_Click"/>
+                    <TextBox x:Name="startSaveNum" Height="23" TextWrapping="Wrap" Text="0"/>
+                    <TextBox x:Name="endSaveNum" Height="23" TextWrapping="Wrap" Text="1000"/>
+                    <Button x:Name="savePartTxt" Height="23" Content="部分保存TXT" Click="savePartTxt_Click"/>
+                    <Button x:Name="savePartExcel" Height="23" Content="部分保存EXCEL" Click="savePartExcel_Click"/>
+                    <Button x:Name="lockData" Height="23" Content="取消保持最新数据" Click="lockData_Click"/>
+                    <Label x:Name="hotTemp" Height="23" Content="0"/>
+                    <Label x:Name="coldTemp" Height="23" Content="0"/>
+                    <Label x:Name="batVoltage" Height="23" Content="0"/>
+                    <Button x:Name="resetAll" Content="重置" Click="resetAll_Click"/>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="0" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="14"/>
+                </Grid.RowDefinitions>
+                
+                <Canvas x:Name="figure" Margin="0" Background="White" MouseMove="mousePos_MouseMove"/>
+                <Canvas x:Name="dataMap"/>
+                <Canvas x:Name="mousePos"/>
+                
+                <Slider x:Name="dataMapPos" Margin="0" Grid.Row="1" Maximum="1000" SmallChange="1" Value="1000" ValueChanged="dataMapPos_ValueChanged" Minimum="1"/>
+            </Grid>
+
+        </Grid>
+
+
+    </Grid>
+</Window>
